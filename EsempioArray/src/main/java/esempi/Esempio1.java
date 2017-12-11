@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.esempioarray;
+package esempi;
 
 /**
  *
@@ -11,7 +11,6 @@ package com.mycompany.esempioarray;
  */
 public class Esempio1 {
 
-    /*
     public static void main(String[] args) throws InterruptedException {
 
         int[] numeri = {2, 6, 76, 23, 12};
@@ -50,7 +49,6 @@ public class Esempio1 {
 
     }
 
-     */
     private static void stampaSeNecessario(int valore) {
         if (valore % 2 == 0) {
             System.out.println(valore);
