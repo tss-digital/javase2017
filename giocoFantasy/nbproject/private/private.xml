@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/home/tss/NetBeansProjects/giocoFantasy/src/personaggi/Stregone.java</file>
+            <file>file:/home/tss/NetBeansProjects/giocoFantasy/src/personaggi/ElencoPersonaggi.java</file>
+            <file>file:/home/tss/NetBeansProjects/giocoFantasy/src/personaggi/Umano.java</file>
+            <file>file:/home/tss/NetBeansProjects/giocoFantasy/src/personaggi/Arma.java</file>
+            <file>file:/home/tss/NetBeansProjects/giocoFantasy/src/personaggi/Cavaliere.java</file>
+            <file>file:/home/tss/NetBeansProjects/giocoFantasy/src/personaggi/MagoBianco.java</file>
+            <file>file:/home/tss/NetBeansProjects/giocoFantasy/src/personaggi/Personaggio.java</file>
+            <file>file:/home/tss/NetBeansProjects/giocoFantasy/src/personaggi/Mago.java</file>
+            <file>file:/home/tss/NetBeansProjects/giocoFantasy/src/personaggi/Move.java</file>
+            <file>file:/home/tss/NetBeansProjects/giocoFantasy/src/personaggi/MagiaBianca.java</file>
+            <file>file:/home/tss/NetBeansProjects/giocoFantasy/src/personaggi/Boss.java</file>
+            <file>file:/home/tss/NetBeansProjects/giocoFantasy/src/personaggi/PersonaggioSelezionato.java</file>
+            <file>file:/home/tss/NetBeansProjects/giocoFantasy/src/personaggi/MagiaNera.java</file>
+            <file>file:/home/tss/NetBeansProjects/giocoFantasy/src/personaggi/AttaccoFIsico.java</file>
+            <file>file:/home/tss/NetBeansProjects/giocoFantasy/src/giocofantasy/Arena.java</file>
+        </group>
+        <group name="esempi-javase"/>
+    </open-files>
+</project-private>
