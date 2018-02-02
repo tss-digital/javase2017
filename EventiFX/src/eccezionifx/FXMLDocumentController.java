@@ -9,6 +9,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -19,6 +21,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 
 /**
  *
@@ -43,6 +47,11 @@ public class FXMLDocumentController implements Initializable {
     private void onEsegui(ActionEvent event) {
         int somma = 0;
         try {
+            if (txtOp1.getLength() == 0 || txtOp2.getLength() == 0) {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Operatore mancante");
+                alert.showAndWait();
+                return;
+            }
             somma = f.sommaNumeriPositivi(Integer.parseInt(txtOp1.getText()), Integer.parseInt(txtOp2.getText()));
         } catch (SommaException | RuntimeException ex) {
             Alert alert = new Alert(Alert.AlertType.ERROR, ex.getMessage());
@@ -54,19 +63,14 @@ public class FXMLDocumentController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
         f = new Funzioni();
-
-        cmdEsegui.setOnAction(e -> {
-            onEsegui(e);
-        });
-
-        cmdEsegui.setOnAction(e -> onEsegui(e));
 
         cmdEsegui.setOnAction(this::onEsegui);
 
-        cmdEsegui.addEventHandler(ActionEvent.ACTION, this::onEsegui);
-        
-        
+        txtOp1.textProperty().addListener(new CheckNumericField(txtOp1));
+
+        txtOp2.textProperty().addListener(new CheckNumericField(txtOp2));
     }
 
 }
