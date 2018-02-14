@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="628.0" prefWidth="968.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.tss.employeefx.ListaImpiegatiController">
+    <children>
+        <BorderPane prefHeight="200.0" prefWidth="320.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <top>
+                <MenuBar BorderPane.alignment="CENTER">
+                    <menus>
+                        <Menu mnemonicParsing="false" text="File">
+                            <items>
+                                <MenuItem mnemonicParsing="false" onAction="#onClose" text="Close" />
+                            </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Edit">
+                            <items>
+                                <MenuItem mnemonicParsing="false" text="Delete" />
+                            </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Help">
+                            <items>
+                                <MenuItem mnemonicParsing="false" text="About" />
+                            </items>
+                        </Menu>
+                    </menus>
+                </MenuBar>
+            </top>
+            <center>
+                <TableView fx:id="tblImpiegati" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                    <columns>
+                        <TableColumn fx:id="numero" prefWidth="108.0" text="Numero" />
+                        <TableColumn fx:id="nome" prefWidth="81.0" text="Nome" />
+                        <TableColumn fx:id="cognome" prefWidth="92.0" text="Cognome" />
+                        <TableColumn fx:id="email" prefWidth="100.0" text="Email" />
+                        <TableColumn fx:id="ufficio" prefWidth="87.0" text="Ufficio" />
+                        <TableColumn fx:id="mansione" prefWidth="124.0" text="Mansione" />
+                        <TableColumn fx:id="responsabile" prefWidth="127.0" text="Responsabile" />
+                    </columns>
+                </TableView>
+            </center>
+            <bottom>
+                <ButtonBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                    <buttons>
+                        <Button fx:id="btnCrea" mnemonicParsing="false" onAction="#onCrea" text="Crea" />
+                        <Button fx:id="btnModifica" mnemonicParsing="false" onAction="#onModifica" text="Modifica" />
+                        <Button fx:id="btnElimina" mnemonicParsing="false" onAction="#onElimina" text="Elimina" />
+                    </buttons>
+                </ButtonBar>
+            </bottom>
+        </BorderPane>
+    </children>
+</AnchorPane>
