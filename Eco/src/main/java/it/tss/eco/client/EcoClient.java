@@ -7,6 +7,7 @@ package it.tss.eco.client;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
@@ -30,6 +31,7 @@ public class EcoClient {
         System.out.println("Client started..");
         Socket s = new Socket(SERVER_NAME, SERVER_PORT);
         System.out.println("Connected... " + s.getPort());
+        
         PrintWriter bw = new PrintWriter(s.getOutputStream(), true);
         BufferedReader br = new BufferedReader(new InputStreamReader(s.getInputStream()));
         Scanner scanner = new Scanner(System.in);
