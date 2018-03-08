@@ -16,6 +16,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotBlank;
 
 /**
  *
@@ -29,6 +30,7 @@ public class ToDo implements Serializable {
     private Long id;
 
     @Basic(optional = false)
+    @NotBlank
     private String titolo;
 
     @Basic(optional = false)
