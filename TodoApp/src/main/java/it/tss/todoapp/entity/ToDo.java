@@ -6,6 +6,7 @@
 package it.tss.todoapp.entity;
 
 import java.io.Serializable;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Objects;
 import javax.persistence.Basic;
@@ -124,7 +125,12 @@ public class ToDo implements Serializable {
 
     @Override
     public String toString() {
-        return "ToDo{" + "id=" + id + ", titolo=" + titolo + ", testo=" + testo + ", il=" + il + ", scadenza=" + scadenza + '}';
+        
+        return id + "\t-\t" 
+                + titolo + "\t-\t" 
+                + testo + "\t-\t" 
+                + DateUtils.asLocalDate(il).format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) + "\t-\t"
+                + scadenza ;
     }
 
     
