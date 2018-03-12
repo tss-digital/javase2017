@@ -24,7 +24,7 @@ import javax.persistence.Persistence;
 public class App {
 
     private static final Scanner sc = new Scanner(System.in);
-    
+    private static final ToDoStore store = new ToDoStore();
     public static void main(String[] args) {
         System.out.println("Start ToDo App .....");
         int cmd;
@@ -59,7 +59,7 @@ public class App {
                 visualizzaToDo();
                 break;
             case 3:
-                visualizzaToDo(new Date());
+                visualizzaToDoInData();
                 break;
             case 4:
                 termina();
@@ -67,40 +67,34 @@ public class App {
         }
     }
 
-    public static void save(ToDo todo) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("todo");
-        EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
-        try {
-            em.persist(todo);
-            em.getTransaction().commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-            em.getTransaction().rollback();
-        } finally {
-            em.close();
-        }
-    }
+    
 
     private static void inserisci() throws ParseException, InterruptedException {
         SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         System.out.println("Titolo: ");
-        Thread.sleep(100);
         String titolo = sc.nextLine();
         System.out.println("Testo: ");
         String testo = sc.nextLine();
         System.out.println("Il: ");
         String il = sc.nextLine();
         Date data = df.parse(il);
-        save(new ToDo(titolo, testo, data));
+        store.save(new ToDo(titolo, testo, data));
     }
 
     private static void visualizzaToDo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        store.findAll().stream().forEach(System.out::println);
     }
 
-    private static void visualizzaToDo(Date date) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private static void visualizzaToDoInData() {
+        try {
+            SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+            System.out.println("Data (dd/MM/yyyy): ");
+            String data = sc.nextLine();
+            Date d = df.parse(data);
+            store.findByDate(d).stream().forEach(System.out::println);
+        } catch (ParseException ex) {
+            Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     private static void termina() {
