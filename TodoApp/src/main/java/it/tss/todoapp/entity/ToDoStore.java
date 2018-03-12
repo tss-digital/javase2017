@@ -30,6 +30,10 @@ public class ToDoStore {
         return em.getTransaction();
     }
 
+    public void close() {
+        em.close();
+    }
+
     public void save(ToDo todo) {
         tx().begin();
         try {
@@ -45,10 +49,11 @@ public class ToDoStore {
         return em.createQuery("select e from ToDo e order by e.scadenza desc", ToDo.class)
                 .getResultList();
     }
-    
+
     public List<ToDo> findByDate(Date d) {
         return em.createQuery("select e from ToDo e where e.il= :data order by e.scadenza desc", ToDo.class)
                 .setParameter("data", d)
                 .getResultList();
     }
+
 }

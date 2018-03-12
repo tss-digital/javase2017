@@ -25,6 +25,7 @@ public class App {
 
     private static final Scanner sc = new Scanner(System.in);
     private static final ToDoStore store = new ToDoStore();
+
     public static void main(String[] args) {
         System.out.println("Start ToDo App .....");
         int cmd;
@@ -36,7 +37,7 @@ public class App {
                 esegui(cmd);
             } catch (ParseException | InterruptedException ex) {
                 System.out.println("Errore nell'esecuzione del comando.." + ex.getMessage());
-            } 
+            }
         } while (cmd != 4);
     }
 
@@ -51,7 +52,7 @@ public class App {
     }
 
     private static void esegui(int cmd) throws ParseException, InterruptedException {
-        switch(cmd){
+        switch (cmd) {
             case 1:
                 inserisci();
                 break;
@@ -66,8 +67,6 @@ public class App {
                 break;
         }
     }
-
-    
 
     private static void inserisci() throws ParseException, InterruptedException {
         SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
@@ -99,6 +98,7 @@ public class App {
 
     private static void termina() {
         System.out.println("Arrivederci...");
+        store.close();
         System.exit(0);
     }
 
