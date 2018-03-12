@@ -11,6 +11,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -22,7 +23,7 @@ public class ToDoStore {
     EntityManager em;
 
     public ToDoStore() {
-        emf = Persistence.createEntityManagerFactory("todo");
+        emf = Persistence.createEntityManagerFactory("pu");
         em = emf.createEntityManager();
     }
 
@@ -37,7 +38,7 @@ public class ToDoStore {
     public void save(ToDo todo) {
         tx().begin();
         try {
-            em.persist(todo);
+            em.merge(todo);
             tx().commit();
         } catch (Exception e) {
             e.printStackTrace();
@@ -45,14 +46,25 @@ public class ToDoStore {
         }
     }
 
+    public void delete(Long id) {
+        tx().begin();
+        ToDo finded = em.find(ToDo.class, id);
+        em.remove(finded);
+        tx().commit();
+    }
+
+    public ToDo find(Long id) {
+        return em.find(ToDo.class, id);
+    }
+
     public List<ToDo> findAll() {
-        return em.createQuery("select e from ToDo e order by e.scadenza desc", ToDo.class)
+        return em.createNamedQuery(ToDo.FIND_ALL, ToDo.class)
                 .getResultList();
     }
 
     public List<ToDo> findByDate(Date d) {
-        return em.createQuery("select e from ToDo e where e.il= :data order by e.scadenza desc", ToDo.class)
-                .setParameter("data", d)
+        return em.createNamedQuery(ToDo.FIND_BY_DATE, ToDo.class)
+                .setParameter("p_data", d)
                 .getResultList();
     }
 

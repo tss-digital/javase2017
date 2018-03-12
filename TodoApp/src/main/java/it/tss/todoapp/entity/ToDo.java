@@ -14,6 +14,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotBlank;
@@ -22,9 +24,18 @@ import javax.validation.constraints.NotBlank;
  *
  * @author tss
  */
+@NamedQueries({
+    @NamedQuery(name = ToDo.FIND_ALL, 
+            query = "select e from ToDo e order by e.il desc"),
+    @NamedQuery(name = ToDo.FIND_BY_DATE, 
+            query = "select e from ToDo e where e.il= :p_data order by e.titolo"),
+})
 @Entity
 public class ToDo implements Serializable {
 
+    public static final String FIND_ALL = "Todo.findAll";
+    public static final String FIND_BY_DATE = "Todo.findByDate";
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
