@@ -14,14 +14,34 @@
         <title>ToDo Web App</title>
     </head>
     <body>
-        <h1>ToDo Web App</h1>
+
+        <!-- A grey horizontal navbar that becomes vertical on small screens -->
+        <nav class="navbar navbar-expand-sm bg-light">
+
+            <!-- Links -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="todoForm.jsp">Nuovo</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="index.jsp">Tutti</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="index.jsp?oggi=true">Oggi</a>
+                </li>
+            </ul>
+
+        </nav>
+
         <div class="list-group">
-            <c:forEach items="${store.findAll()}" var="v">
-                <a href="#" class="list-group-item list-group-item-action">
+            <c:forEach items="${empty pageContext.request.getParameter('oggi') ? store.findAll() : store.findToday()}" var="v">
+                <a href="todoForm.jsp?id=${v.id}&titolo=${v.titolo}&testo=${v.testo}&il=${v.ilToString}" class="list-group-item list-group-item-action">
                     <c:out value="${v.titolo} - ${v.testo}" /> 
                     - <fmt:formatDate pattern="dd/MM/yyy" value="${v.il}"/> 
                 </a> 
             </c:forEach>
         </div>
+
+
     </body>
 </html>

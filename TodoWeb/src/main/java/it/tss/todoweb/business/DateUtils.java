@@ -5,6 +5,9 @@
  */
 package it.tss.todoweb.business;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -17,19 +20,32 @@ import java.util.Date;
  */
 public class DateUtils {
 
-  public static Date asDate(LocalDate localDate) {
-    return Date.from(localDate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
-  }
+    private static DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 
-  public static Date asDate(LocalDateTime localDateTime) {
-    return Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
-  }
+    public static Date asDate(LocalDate localDate) {
+        return Date.from(localDate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+    }
 
-  public static LocalDate asLocalDate(Date date) {
-    return Instant.ofEpochMilli(date.getTime()).atZone(ZoneId.systemDefault()).toLocalDate();
-  }
+    public static Date asDate(LocalDateTime localDateTime) {
+        return Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
+    }
 
-  public static LocalDateTime asLocalDateTime(Date date) {
-    return Instant.ofEpochMilli(date.getTime()).atZone(ZoneId.systemDefault()).toLocalDateTime();
-  }
+    public static LocalDate asLocalDate(Date date) {
+        return Instant.ofEpochMilli(date.getTime()).atZone(ZoneId.systemDefault()).toLocalDate();
+    }
+
+    public static LocalDateTime asLocalDateTime(Date date) {
+        return Instant.ofEpochMilli(date.getTime()).atZone(ZoneId.systemDefault()).toLocalDateTime();
+    }
+
+    public static Date dateFromString(String date) throws ParseException {
+        if (date == null) {
+            return null;
+        }
+        return df.parse(date);
+    }
+    
+    public static String dateToString(Date date)  {
+        return df.format(date);
+    }
 }

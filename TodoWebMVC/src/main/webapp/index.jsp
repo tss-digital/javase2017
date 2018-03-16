@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel='stylesheet' href='webjars/bootstrap/4.0.0-2/css/bootstrap.min.css'>
+        <link rel='stylesheet' href='${request.contextPath}/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css'>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>ToDo Web App</title>
     </head>
