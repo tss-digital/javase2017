@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel='stylesheet' href='webjars/bootstrap/4.0.0-2/css/bootstrap.min.css'>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>ToDo</title>
+    </head>
+    <body>
+        <!-- A grey horizontal navbar that becomes vertical on small screens -->
+        <nav class="navbar navbar-expand-sm bg-light">
+
+            <!-- Links -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="todoForm.html">Nuovo</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Tutti</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Oggi</a>
+                </li>
+            </ul>
+
+        </nav> 
+        <form id="f" action="resources/todo" method="POST">
+
+            <div class="container-fluid">
+                <h1 class="text-center text-info">Dati</h1>
+                <div class="form-group">
+                    <label for="titolo">Titolo:</label>
+                    <input type="text" name="titolo" class="form-control" id="titolo">
+                </div>
+                <div class="form-group">
+                    <label for="testo">Testo</label>
+                    <textarea id="testo" name="testo" class="form-control">
+                    </textarea>
+                </div>
+                <div class="form-group">
+                    <label for="il">Il:</label>
+                    <input type="datetime" name="il" class="form-control" id="il">
+                </div>
+                
+                <button onclick="create();"  name="salva" class="btn btn-default">Salva</button>
+                
+            </div>
+        </form> 
+        <script>
+            function create(){
+                alert("OKKK");
+                var f = document.getElementById("f");
+                f.submit();
+                document.location.href = "http://localhost:8080/index.html";
+            }
+        </script>
+    </body>
+</html>
