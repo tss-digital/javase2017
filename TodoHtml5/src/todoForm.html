@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel='stylesheet' href='webjars/bootstrap/4.0.0-2/css/bootstrap.min.css'>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>ToDo</title>
     </head>
@@ -19,12 +19,12 @@
                     <a class="nav-link" href="index.html">Tutti</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Oggi</a>
+                    <a class="nav-link" href="index.html?oggi=true">Oggi</a>
                 </li>
             </ul>
 
         </nav> 
-        <form id="f" action="resources/todo" method="POST">
+        <form  id="f">
 
             <div class="container-fluid">
                 <h1 class="text-center text-info">Dati</h1>
@@ -42,17 +42,11 @@
                     <input type="datetime" name="il" class="form-control" id="il">
                 </div>
                 
-                <button onclick="create();"  name="salva" class="btn btn-default">Salva</button>
-                
+                <button  name="salva" class="btn btn-default">Salva</button>
+                <button  name="elimina" class="btn btn-default">Elimina</button>
             </div>
         </form> 
-        <script>
-            function create(){
-                alert("OKKK");
-                var f = document.getElementById("f");
-                f.submit();
-                document.location.href = "http://localhost:8080/index.html";
-            }
-        </script>
+
     </body>
+    <script src="./js/update.js"></script>
 </html>

@@ -13,6 +13,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -38,11 +40,15 @@ public class DateUtils {
         return Instant.ofEpochMilli(date.getTime()).atZone(ZoneId.systemDefault()).toLocalDateTime();
     }
 
-    public static Date dateFromString(String date) throws ParseException {
+    public static Date dateFromString(String date)  {
         if (date == null) {
             return null;
         }
-        return df.parse(date);
+        try {
+            return df.parse(date);
+        } catch (ParseException ex) {
+            return null;
+        }
     }
     
     public static String dateToString(Date date)  {

@@ -33,12 +33,24 @@ public class ToDoStore {
                 .getResultList();
     }
 
-    public void save(ToDo tosave) {
-        em.merge(tosave);
+    public List<ToDo> find(Date d) {
+        return em.createNamedQuery(ToDo.FIND_BY_DATE)
+                .setParameter("p_data", d)
+                .getResultList();
     }
 
     public ToDo find(long id) {
         return em.find(ToDo.class, id);
+    }
+
+    public List<ToDo> find(String word) {
+        return em.createNamedQuery(ToDo.FIND_BY_WORD, ToDo.class)
+                .setParameter("word", "%" + word + "%")
+                .getResultList();
+    }
+
+    public void save(ToDo tosave) {
+        em.merge(tosave);
     }
 
     public void delete(long id) {
@@ -46,9 +58,4 @@ public class ToDoStore {
         em.remove(finded);
     }
 
-    public List<ToDo> find(String word) {
-        return em.createNamedQuery(ToDo.FIND_BY_WORD,ToDo.class)
-                .setParameter("word","%" + word + "%")
-                .getResultList();
-    }
 }

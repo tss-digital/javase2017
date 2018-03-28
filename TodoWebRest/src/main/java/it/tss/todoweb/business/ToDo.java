@@ -33,10 +33,10 @@ import javax.xml.bind.annotation.XmlRootElement;
             query = "select e from ToDo e order by e.il desc")
     ,
     @NamedQuery(name = ToDo.FIND_BY_DATE,
-            query = "select e from ToDo e where e.il= :p_data order by e.titolo"),
+            query = "select e from ToDo e where e.il= :p_data order by e.titolo")
+    ,
     @NamedQuery(name = ToDo.FIND_BY_WORD,
-            query = "select e from ToDo e where e.titolo like :word or e.testo like :word order by e.titolo"),
-})
+            query = "select e from ToDo e where e.titolo like :word or e.testo like :word order by e.titolo"),})
 @Entity
 @Table(name = "ToDo")
 public class ToDo implements Serializable {
@@ -144,7 +144,7 @@ public class ToDo implements Serializable {
         return id + "\t-\t"
                 + titolo + "\t-\t"
                 + testo + "\t-\t"
-                + DateUtils.asLocalDate(il).format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) + "\t-\t"
+                + il + "\t\t"
                 + scadenza;
     }
 

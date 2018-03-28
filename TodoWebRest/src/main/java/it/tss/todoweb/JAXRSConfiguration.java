@@ -1,5 +1,6 @@
 package it.tss.todoweb;
 
+import java.util.Set;
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
@@ -12,4 +13,5 @@ import javax.ws.rs.core.Application;
 @ApplicationPath("resources")
 public class JAXRSConfiguration extends Application {
 
+    
 }
