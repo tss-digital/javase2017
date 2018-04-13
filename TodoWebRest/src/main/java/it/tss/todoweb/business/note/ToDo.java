@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package it.tss.todoweb.business;
+package it.tss.todoweb.business.note;
 
+import it.tss.todoweb.business.DateUtils;
 import java.io.Serializable;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Objects;
 import javax.persistence.Basic;
@@ -20,6 +20,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Version;
 import javax.validation.constraints.NotBlank;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -62,6 +63,9 @@ public class ToDo implements Serializable {
 
     @Temporal(TemporalType.DATE)
     private Date scadenza;
+
+    @Version
+    private Long version;
 
     public ToDo() {
     }
@@ -114,6 +118,14 @@ public class ToDo implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getVersion() {
+        return version;
+    }
+
+    public void setVersion(Long version) {
+        this.version = version;
     }
 
     @Override

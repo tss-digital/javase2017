@@ -12,9 +12,8 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -40,7 +39,7 @@ public class DateUtils {
         return Instant.ofEpochMilli(date.getTime()).atZone(ZoneId.systemDefault()).toLocalDateTime();
     }
 
-    public static Date dateFromString(String date)  {
+    public static Date dateFromString(String date) {
         if (date == null) {
             return null;
         }
@@ -50,8 +49,13 @@ public class DateUtils {
             return null;
         }
     }
-    
-    public static String dateToString(Date date)  {
+
+    public static String dateToString(Date date) {
         return df.format(date);
+    }
+
+    public static Date scadenzaToken(int min) {
+        LocalDateTime plus = LocalDateTime.now().plus(min, ChronoUnit.MINUTES);
+        return asDate(plus);
     }
 }

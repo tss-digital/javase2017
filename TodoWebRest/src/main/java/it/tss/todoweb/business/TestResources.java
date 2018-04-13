@@ -5,6 +5,8 @@
  */
 package it.tss.todoweb.business;
 
+import it.tss.todoweb.business.security.AuthRequired;
+import it.tss.todoweb.business.note.ToDo;
 import java.math.BigDecimal;
 import javax.json.Json;
 import javax.json.JsonObject;
@@ -21,6 +23,7 @@ import javax.ws.rs.core.Response;
  *
  * @author tss
  */
+
 @Path("test")
 public class TestResources {
 
@@ -41,6 +44,7 @@ public class TestResources {
 
     }
 
+    
     @GET
     @Path("resp")
     public Response resp() {

@@ -3,26 +3,43 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package it.tss.todoweb.business;
+package it.tss.todoweb.business.note;
 
+import it.tss.todoweb.business.logging.Logged;
+import it.tss.todoweb.business.utenti.Utente;
 import java.util.Date;
 import java.util.List;
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.SecurityContext;
+import it.tss.todoweb.business.security.AuthUser;
 
 /**
  *
  * @author tss
  */
+@Logged
 @Stateless
 public class ToDoStore {
 
+    @Inject
+    @AuthUser
+    Utente authUser;
+    
+    @Context
+    SecurityContext sc;
+    
     @PersistenceContext
     private EntityManager em;
 
+    
     public List<ToDo> findAll() {
+        System.out.println(authUser);
         return em.createNamedQuery(ToDo.FIND_ALL, ToDo.class)
                 .getResultList();
     }

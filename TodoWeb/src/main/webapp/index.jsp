@@ -41,7 +41,7 @@
                 </a> 
             </c:forEach>
         </div>
-
+        <script src="app.js"></script>
 
     </body>
 </html>

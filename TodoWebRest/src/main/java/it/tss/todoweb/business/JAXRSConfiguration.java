@@ -1,4 +1,4 @@
-package it.tss.todoweb;
+package it.tss.todoweb.business;
 
 import java.util.Set;
 import javax.ws.rs.ApplicationPath;
