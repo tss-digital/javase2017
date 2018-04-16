@@ -5,16 +5,20 @@
  */
 package it.tss.todoweb.business.utenti;
 
+import it.tss.todoweb.business.note.ToDo;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -60,6 +64,9 @@ public class Utente implements Serializable {
     @Version
     private Long version;
 
+    @OneToMany(mappedBy = "utente", fetch = FetchType.EAGER )
+    private List<ToDo> note;
+    
     public Utente() {
     }
 
@@ -125,6 +132,15 @@ public class Utente implements Serializable {
         this.version = version;
     }
 
+    public List<ToDo> getNote() {
+        return note;
+    }
+
+    public void setNote(List<ToDo> note) {
+        this.note = note;
+    }
+
+    
     @Override
     public int hashCode() {
         int hash = 5;

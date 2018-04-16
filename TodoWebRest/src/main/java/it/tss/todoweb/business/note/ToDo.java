@@ -6,6 +6,7 @@
 package it.tss.todoweb.business.note;
 
 import it.tss.todoweb.business.DateUtils;
+import it.tss.todoweb.business.utenti.Utente;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
@@ -15,6 +16,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -23,6 +25,7 @@ import javax.persistence.TemporalType;
 import javax.persistence.Version;
 import javax.validation.constraints.NotBlank;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -31,7 +34,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = ToDo.FIND_ALL,
-            query = "select e from ToDo e order by e.il desc")
+            query = "select e from ToDo e where e.utente.id= :id_utente order by e.il desc")
     ,
     @NamedQuery(name = ToDo.FIND_BY_DATE,
             query = "select e from ToDo e where e.il= :p_data order by e.titolo")
@@ -66,6 +69,10 @@ public class ToDo implements Serializable {
 
     @Version
     private Long version;
+
+    @XmlTransient
+    @ManyToOne
+    private Utente utente;
 
     public ToDo() {
     }
@@ -126,6 +133,14 @@ public class ToDo implements Serializable {
 
     public void setVersion(Long version) {
         this.version = version;
+    }
+
+    public Utente getUtente() {
+        return utente;
+    }
+
+    public void setUtente(Utente utente) {
+        this.utente = utente;
     }
 
     @Override

@@ -35,7 +35,10 @@ public class AuthFilter implements ContainerRequestFilter {
 
     @Inject
     UtenteStore utenteStore;
-    
+
+    @Inject
+    Event<String> authSuccess;
+
     @Override
     public void filter(ContainerRequestContext rc) throws IOException {
 
@@ -55,9 +58,8 @@ public class AuthFilter implements ContainerRequestFilter {
         try {
             // Validate the token
             Utente u = utenteStore.validateTokenRequest(token);
-            
-            settingSecurityContext(rc, u);
-            
+
+            //settingSecurityContext(rc, u);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             abortWithUnauthorized(rc);
@@ -89,7 +91,6 @@ public class AuthFilter implements ContainerRequestFilter {
         final SecurityContext currentSecurityContext = rc.getSecurityContext();
         rc.setSecurityContext(new SecurityContext() {
 
-            
             @Override
             public Principal getUserPrincipal() {
                 return () -> u.getUsername();

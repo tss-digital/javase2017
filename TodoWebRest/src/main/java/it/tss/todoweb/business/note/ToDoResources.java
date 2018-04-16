@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.json.JsonArray;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.FormParam;
@@ -37,8 +38,8 @@ public class ToDoResources {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<ToDo> all() {
-        return store.findAll();
+    public Response all() {
+        return Response.ok(store.findAllJson()).build();
     }
 
     @GET
@@ -66,8 +67,8 @@ public class ToDoResources {
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     public Response create(@FormParam("titolo") String titolo,
             @FormParam("testo") String testo, @FormParam("il") String il) {
-        ToDo tosave;
-        tosave = new ToDo(titolo, testo, DateUtils.dateFromString(il));
+        
+        ToDo tosave = new ToDo(titolo, testo, DateUtils.dateFromString(il));
         store.save(tosave);
         return Response.ok().build();
 
@@ -79,8 +80,6 @@ public class ToDoResources {
     public Response update(@PathParam("id") Long id, @FormParam("titolo") String titolo,
             @FormParam("testo") String testo, @FormParam("il") String il) {
         ToDo tosave;
-        System.out.println(String.format("---UPDATE---- titolo:%s, testo=%s, il:%s", titolo, testo, il));
-
         tosave = store.find(id);
         tosave.setTitolo(titolo);
         tosave.setTesto(testo);

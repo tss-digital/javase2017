@@ -5,6 +5,8 @@
  */
 package it.tss.todoweb.business.utenti;
 
+import it.tss.todoweb.business.DateUtils;
+import it.tss.todoweb.business.note.ToDo;
 import java.math.BigDecimal;
 import java.util.Optional;
 import javax.ejb.EJBException;
@@ -29,6 +31,17 @@ public class UtenteResources {
     @Inject
     UtenteStore store;
 
+    
+    @POST
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    public Response create(@FormParam("usr") String usr,
+            @FormParam("pwd") String pwd, @FormParam("email") String email) {
+        Utente tosave = new Utente(usr, pwd, email);
+        store.save(tosave);
+        return Response.ok().build();
+
+    }
+    
     @POST
     @Path("login")
     @Consumes(MediaType.APPLICATION_JSON)

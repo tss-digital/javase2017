@@ -12,6 +12,7 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
 
@@ -57,5 +58,9 @@ public class DateUtils {
     public static Date scadenzaToken(int min) {
         LocalDateTime plus = LocalDateTime.now().plus(min, ChronoUnit.MINUTES);
         return asDate(plus);
+    }
+    
+    public static String dateToISO(Date date) {
+        return asLocalDate(date).format(DateTimeFormatter.ISO_LOCAL_DATE);
     }
 }

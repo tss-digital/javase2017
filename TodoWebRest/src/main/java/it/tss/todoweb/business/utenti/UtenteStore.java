@@ -116,7 +116,7 @@ public class UtenteStore implements Serializable {
         if (!isValidToken(logged)) {
             throw new EJBException("Accesso negato, token scaduto");
         }
-
+        
         authSuccess.fire(logged.getUsername());
         
         return logged;

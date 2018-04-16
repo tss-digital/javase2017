@@ -26,13 +26,13 @@ public class UtenteProducer {
     Utente logged;
     
     public void onAuthenticateUser(@Observes @AuthSuccess String usr){
+        System.out.println("onProduceAuthUser->" + usr);
         Optional<Utente> u = store.findByUser(usr);
         logged = u.get();
     }
     
     @Produces
     @AuthUser
-    @RequestScoped
     public Utente getLogged(){
         return logged;
     }
