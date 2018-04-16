@@ -9,19 +9,4 @@
             30
         </session-timeout>
     </session-config>
-    <!--
-    <security-constraint>
-        <web-resource-collection>
-            <web-resource-name>Todos</web-resource-name>
-            <url-pattern>/resources/todo/*</url-pattern>
-        </web-resource-collection>
-        <auth-constraint>
-            <role-name>admin</role-name>
-        </auth-constraint>
-        
-    </security-constraint>
-    <security-role>
-        <role-name>admin</role-name>
-    </security-role>
-    -->
 </web-app>
