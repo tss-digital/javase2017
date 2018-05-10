@@ -82,7 +82,7 @@ public class FileResources {
         try{
             Response.ResponseBuilder rb = 
                     Response.ok(Files.readAllBytes(Paths.get(LOCATION + fname)));
-            
+            rb.type(MediaType.APPLICATION_OCTET_STREAM);
             rb.header("Content-Disposition", "attachment; filename=\"" + fname + "\"");
             return rb.build();
         }catch(IOException ex){

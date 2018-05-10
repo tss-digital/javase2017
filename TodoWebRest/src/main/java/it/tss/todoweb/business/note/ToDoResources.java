@@ -45,22 +45,22 @@ public class ToDoResources {
     @GET
     @Path("{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public ToDo find(@PathParam("id") Long id) {
-        return store.find(id);
+    public Response find(@PathParam("id") Long id) {
+        return Response.ok(store.findJson(id)).build() ;
     }
 
     @GET
     @Path("search/today")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<ToDo> find() {
-        return store.find(new Date());
+    public Response find() {
+        return Response.ok(store.find(new Date())).build() ;
     }
 
     @GET
     @Path("find/{word}")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<ToDo> find(@PathParam("word") String word) {
-        return store.find(word);
+    public Response find(@PathParam("word") String word) {
+        return Response.ok( store.find(word)).build() ;
     }
 
     @POST

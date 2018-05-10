@@ -75,6 +75,6 @@ fetch(uri, {
     });
 
 const render = (todo) => {
-    return `<a href="todoForm.html?id=${todo.id}" class="list-group-item">${todo.titolo} - ${todo.testo} - ${todo.ild}</a>`;
+    return `<a href="todoForm.html?id=${todo.id}" class="list-group-item">${todo.titolo} - ${todo.testo} - ${todo.il    }</a>`;
 }
 

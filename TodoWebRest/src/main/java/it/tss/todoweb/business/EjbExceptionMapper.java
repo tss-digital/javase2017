@@ -5,7 +5,9 @@
  */
 package it.tss.todoweb.business;
 
+import java.util.logging.Logger;
 import javax.ejb.EJBException;
+import javax.inject.Inject;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
 import javax.ws.rs.ext.Provider;
@@ -17,8 +19,12 @@ import javax.ws.rs.ext.Provider;
 @Provider
 public class EjbExceptionMapper implements ExceptionMapper<EJBException> {
 
+    @Inject
+    Logger log;
+    
     @Override
     public Response toResponse(EJBException ex) {
+        log.info("EjbExceptionMapper..... error: " + ex.getMessage());
         Throwable cause = ex.getCause();
         Response unknowError = Response.status(Response.Status.INTERNAL_SERVER_ERROR)
                 .header("causa", "Errore sconosciuto...")

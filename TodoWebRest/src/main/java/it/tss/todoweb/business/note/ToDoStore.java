@@ -22,6 +22,7 @@ import it.tss.todoweb.business.security.AuthUser;
 import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonArrayBuilder;
+import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
 
 /**
@@ -51,37 +52,37 @@ public class ToDoStore {
         List<ToDo> result = em.createNamedQuery(ToDo.FIND_ALL, ToDo.class)
                 .setParameter("id_utente", authUser.getId())
                 .getResultList();
-        JsonArrayBuilder a = Json.createArrayBuilder();
-        result.stream().map(v -> Json.createObjectBuilder()
-                .add("id", v.getId())
-                .add("titolo", v.getTitolo())
-                .add("testo", v.getTesto())
-                .add("il", DateUtils.dateToISO(v.getIl()))
-                .add("user_id", v.getUtente().getId()))
-                .forEach(jsonTodo -> a.add(jsonTodo));
-        return a.build();
+        
+        return toJson(result);
     }
 
-    public List<ToDo> findToday() {
-        return em.createNamedQuery(ToDo.FIND_BY_DATE)
+    public JsonArray findToday() {
+       List<ToDo> result = em.createNamedQuery(ToDo.FIND_BY_DATE)
                 .setParameter("p_data", new Date())
                 .getResultList();
+       return toJson(result);
     }
 
-    public List<ToDo> find(Date d) {
-        return em.createNamedQuery(ToDo.FIND_BY_DATE)
+    public JsonArray find(Date d) {
+        List<ToDo> result =  em.createNamedQuery(ToDo.FIND_BY_DATE)
                 .setParameter("p_data", d)
                 .getResultList();
+        return toJson(result);
     }
-
+    
     public ToDo find(long id) {
         return em.find(ToDo.class, id);
     }
 
-    public List<ToDo> find(String word) {
-        return em.createNamedQuery(ToDo.FIND_BY_WORD, ToDo.class)
+    public JsonObject findJson(long id) {
+        return toJson(em.find(ToDo.class, id));
+    }
+
+    public JsonArray find(String word) {
+         List<ToDo> result = em.createNamedQuery(ToDo.FIND_BY_WORD, ToDo.class)
                 .setParameter("word", "%" + word + "%")
                 .getResultList();
+          return toJson(result);
     }
 
     public void save(ToDo tosave) {
@@ -94,4 +95,19 @@ public class ToDoStore {
         em.remove(finded);
     }
 
+    private JsonArray toJson(List<ToDo> result){
+        JsonArrayBuilder a = Json.createArrayBuilder();
+        result.stream().map(this::toJson)
+                .forEach(jsonTodo -> a.add(jsonTodo));
+        return a.build();
+    }
+    
+    private JsonObject toJson(ToDo v){
+        return Json.createObjectBuilder()
+                .add("id", v.getId())
+                .add("titolo", v.getTitolo())
+                .add("testo", v.getTesto())
+                .add("il", DateUtils.dateToISO(v.getIl()))
+                .add("user_id", v.getUtente().getId()).build();
+    }
 }
