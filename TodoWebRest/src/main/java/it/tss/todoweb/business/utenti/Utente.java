@@ -58,6 +58,9 @@ public class Utente implements Serializable {
     
     private String token;
     
+    @Column(length = 50)
+    private String tel;
+    
     @Temporal(TemporalType.TIMESTAMP)
     private Date tokenEnd;
     
@@ -140,6 +143,15 @@ public class Utente implements Serializable {
         this.note = note;
     }
 
+    public String getTel() {
+        return tel;
+    }
+
+    public void setTel(String tel) {
+        this.tel = tel;
+    }
+
+    
     
     @Override
     public int hashCode() {
