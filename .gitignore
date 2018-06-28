@@ -55,3 +55,5 @@ release.properties
 pom.xml.releaseBackup
 pom.xml.tag
 /EventiFX/nbproject/private/
+
+node_modules/ 

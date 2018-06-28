@@ -33,7 +33,7 @@ myForm.addEventListener('submit', evt => {
         localStorage.setItem('token', jsonData.token);
         document.location.href = "index.html";
     }).catch(err => {
-            console.dir(err)
-        })
+        console.dir(err)
+    })
 })
 
